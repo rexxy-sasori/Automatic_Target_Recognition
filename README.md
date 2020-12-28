@@ -16,7 +16,7 @@ a validation set. If use_validation is set to False, then the script will save t
 either the best test error or test loss. 
 
 When the training is completed, a model with the extension .pt.tar can be found in directory 
-specified in result_dir. To evalute the model, run:
+specified in result_dir. To run 5 independent training processes for averaged accuracy, one should run replace "main_train.py" with "main_train_multiple.py". To evalute the model, run:
 
 python main_eval.py [Model File Path]
 
