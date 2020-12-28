@@ -1,5 +1,9 @@
 This repository contains src code developed in python3 for training neural networks of Automatic 
-Target Recognition. To run the code, run the command:
+Target Recognition. Preliminiary results have been pulished 
+in ICASSP 2020 and a copy of the manuscript can be found [here](http://shanbhag.ece.illinois.edu/publications/ICASSP_dbouk_2020.pdf)
+
+
+To run the code, run the command:
 
 python main_train.py [YAML File Path]
 
