@@ -1,0 +1,66 @@
+seed: 233574
+device:
+  use_gpu: True
+  gpu_id: 0
+  parallel: False
+lr_scheduler:
+  name: 'step'
+  init_args:
+    lr_step_size: 50
+    lr_step_gamma: 0.1
+loss_func:
+  name: 'cel'
+  init_args: ~
+optimizer:
+  name: 'sgd'
+  lr: 0.01
+  momentum: 0.9
+  weight_decay: 0.0009
+model:
+  name: 'atrlite64'
+  quant_model: False
+  init_args:
+    fmsize: 64
+dataset:
+  name: 'atr'
+  train_valid_split: 0.7
+  use_validation: False
+  aug: True
+  trainset:
+    distort: True
+    crop_size:  32
+    dataset_dir: '/scratch/MSTAR_NEW' # todo You need to reset this!!
+    classes:  ['2S1', 'BMP2', 'BTR70', 'M1', 'M2', 'M35', 'M548', 'M60', 'ZSU23', 'T72']
+  testset:
+    distort: False
+    crop_size: 32
+    dataset_dir: '/scratch/MSTAR_NEW' # todo You need to reset this!!
+    classes:  ['2S1', 'BMP2', 'BTR70', 'M1', 'M2', 'M35', 'M548', 'M60', 'ZSU23', 'T72']
+  base_transforms:
+    - name: 'img2tensor'
+      init_args: ~
+    - name: 'normalize_mean_std'
+      init_args:
+        mean: [0.3331]
+        std: [0.2311]
+  aug_transforms:
+    - name: 'img2tensor'
+      init_args: ~
+    - name: 'normalize_mean_std'
+      init_args:
+        mean: [0.3331]
+        std: [0.2311]
+train:
+  num_worker: 32
+  batch_size: 140
+  num_epoch: 200
+  drop_last_batch: False
+  use_train_weighted_sampler: False
+  use_test_weighted_sampler: False
+  resume_from_best: False
+  result_dir: '/data/shanbhag/hanmoou2/sample64' # todo You need to reset this!!
+  model_src_path: ''
+  trainer: 'backprop'
+  print_freq: 20
+  train_model: True
+  save_model_by: 'acc'

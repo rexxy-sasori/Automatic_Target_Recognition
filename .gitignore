@@ -1,0 +1,7 @@
+.DS_Store
+.idea/
+__pycache__/
+IO/__pycache__/
+nn/__pycache__/
+vision/__pycache__/
+result/
