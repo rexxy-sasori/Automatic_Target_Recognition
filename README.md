@@ -24,4 +24,6 @@ The script will print the classification accuracy and draw the confusion matrix.
 the API only supports training on GPU and evaluating on GPU. If the feature of training on GPU and 
 evaluating on CPU is desired, please submit the issue in wiki.
 
+By expanding models, trainer computation mechanism (backprop is provided as a sample in trainer.py), and loss functions, this framework can be used to develope various machine learning / deep learning projects
+
 The dependency is listed in requirements.txt. # Automatic_Target_Recognition
