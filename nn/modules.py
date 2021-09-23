@@ -59,6 +59,8 @@ class PrimaryCapLayer(nn.Module):
         for _ in range(num_primary_cap):
             self.primary_capsules.append(PrimaryCapsule(input_dim, num_sar_cap))
 
+        self.primary_capsules = nn.ModuleList(self.primary_capsules)
+
     def forward(self, x):
         """
         @param:
