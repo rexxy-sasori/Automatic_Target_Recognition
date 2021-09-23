@@ -2,7 +2,7 @@ import torch
 from torch import nn
 
 
-class CapMarginLoss(nn._Loss):
+class CapMarginLoss(nn.modules.loss._Loss):
     def __init__(self, lam=0.5):
         super(CapMarginLoss, self).__init__()
         self.lam = lam
