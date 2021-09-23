@@ -1,7 +1,7 @@
 from distutils.version import LooseVersion
 
 from torch import nn
-from nn.models import Conv2dSamePadding
+#from nn.models import Conv2dSamePadding
 
 from .vision.basic_hooks import *
 
@@ -31,7 +31,7 @@ register_hooks = {
     nn.Conv1d: count_convNd,
     nn.Conv2d: count_convNd,
     nn.Conv3d: count_convNd,
-    Conv2dSamePadding: count_convNd,
+    #Conv2dSamePadding: count_convNd,
     nn.ConvTranspose1d: count_convNd,
     nn.ConvTranspose2d: count_convNd,
     nn.ConvTranspose3d: count_convNd,

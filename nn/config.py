@@ -61,8 +61,8 @@ def __get_preprocessing__(preprocessing_usr_configs):
     return tfd.Compose(transforms)
 
 
-def get_loss_func(loss_func_usr_configs):
-    nn_clc = loss.get(loss_func_usr_configs.name)
+def get_loss_func(loss_func_usr_configs, weight=None):
+    nn_cls = loss.__LOSS__.get(loss_func_usr_configs.name)
     if nn_cls is None:
         raise NotImplementedError('loss function name not recognized')
 
@@ -276,6 +276,7 @@ class TrainerConfigs:
         self.train_loader = ret[0]
         self.validation_loader = ret[1]
         self.test_loader = ret[2]
+
         self.criterion = get_loss_func(
             usr.loss_func, weight=trainset.cls_weight if hasattr(trainset, 'cls_weight') else None
         )
