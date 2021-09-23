@@ -15,8 +15,8 @@ class CapMarginLoss(nn.modules.loss._Loss):
         """
         m_plus = 0.9
         m_minus = 0.1
-        first_term = torch.max(0, m_plus - input) ** 2
-        second_term = torch.max(0, input - m_minus) ** 2
+        first_term = torch.max(torch.zeros_like(m_plus - input), m_plus - input) ** 2
+        second_term = torch.max(torch.zeros_like(input - m_minus), input - m_minus) ** 2
 
         target_complement = 1 - target
         loss = target * first_term + self.lam * target_complement * second_term
