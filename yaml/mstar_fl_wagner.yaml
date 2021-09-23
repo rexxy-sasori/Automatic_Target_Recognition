@@ -17,7 +17,7 @@ optimizer:
   momentum: 0.9
   weight_decay: 0.0009
 model:
-  name: 'wagnernet'
+  name: 'dingnet'
   quant_model: False
   quant_act: False
   quant_bias: False
@@ -25,9 +25,7 @@ model:
   num_bits_act: 4
   quant_scheme_conv: 'uniform'
   quant_scheme_fc: 'uniform'
-  init_args:
-    fmsize: 16
-    m: 5
+  init_args: ~
 dataset:
   name: 'atr'
   train_valid_split: 0.7

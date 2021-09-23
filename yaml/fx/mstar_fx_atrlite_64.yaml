@@ -26,7 +26,7 @@ model:
   quant_scheme_conv: 'uniform'
   quant_scheme_fc: 'uniform'
   init_args:
-    fmsize: 20
+    fmsize: 64
     m: 5
 dataset:
   name: 'atr'

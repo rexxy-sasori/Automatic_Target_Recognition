@@ -2,7 +2,7 @@
 Author: Rex Geng
 This file inits all nessceary configurations given usr specificed yaml file. The configuration includes:
 
-- device
+- device (gpu, cpu)
 - learning rate scheduler
 - preprocessing (nn transforms)
 - loss function (crossEntropy, weighted cross entropy, mse ...)
@@ -21,6 +21,7 @@ from torchvision import transforms as tfd  # existing transforms
 from nn import dataset as datasetc
 from nn import models as modelsc
 from nn import quantization
+from nn import loss
 from nn import transforms as tfc  # customized transforms
 from nn.trainer import __TRAINER__
 from nn.utils import ImbalancedDatasetSampler
@@ -60,17 +61,13 @@ def __get_preprocessing__(preprocessing_usr_configs):
     return tfd.Compose(transforms)
 
 
-def get_loss_func(loss_func_usr_configs, weight=None):
-    if loss_func_usr_configs.name == 'cel':
-        criterion = nnd.CrossEntropyLoss()
-    elif loss_func_usr_configs.name == 'wcel':
-        criterion = nnd.CrossEntropyLoss(weight=weight)
-    elif loss_func_usr_configs.name == 'mse':
-        criterion = nnd.MSELoss()
-    else:
-        return NotImplementedError('loss function name not recognized')
+def get_loss_func(loss_func_usr_configs):
+    nn_clc = loss.get(loss_func_usr_configs.name)
+    if nn_cls is None:
+        raise NotImplementedError('loss function name not recognized')
 
-    return criterion
+    loss_obj = nn_cls(**loss_func_usr_configs.init_args.__dict__)
+    return loss_obj
 
 
 def get_optimizer(model, optimizer_usr_configs):

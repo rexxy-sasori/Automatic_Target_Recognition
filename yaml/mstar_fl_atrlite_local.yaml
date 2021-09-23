@@ -18,15 +18,15 @@ optimizer:
   weight_decay: 0.0009
 model:
   name: 'atrlite'
-  quant_model: True
-  quant_act: True
-  quant_bias: True
-  num_bits_weight: 8
-  num_bits_act: 8
+  quant_model: False
+  quant_act: False
+  quant_bias: False
+  num_bits_weight: 4
+  num_bits_act: 4
   quant_scheme_conv: 'uniform'
   quant_scheme_fc: 'uniform'
   init_args:
-    fmsize: 20
+    fmsize: 24
     m: 5
 dataset:
   name: 'atr'
@@ -50,10 +50,6 @@ dataset:
       init_args:
         mean: [0.2726]
         std: [0.2653]
-    - name: 'quant_input'
-      init_args:
-        clip_val: 3.632
-        num_bits: 8
   aug_transforms:
     - name: 'img2tensor'
       init_args: ~
@@ -61,10 +57,6 @@ dataset:
       init_args:
         mean: [0.2726]
         std: [0.2653]
-    - name: 'quant_input'
-      init_args:
-        clip_val: 3.632
-        num_bits: 8
 train:
   num_worker: 16
   batch_size: 140
@@ -73,7 +65,7 @@ train:
   use_train_weighted_sampler: False
   use_test_weighted_sampler: False
   resume_from_best: False
-  result_dir: '/data/shanbhag/hgeng4/MSTAR/atrlite/f_40/q8' # todo You need to reset this!!
+  result_dir: './plot_data' # todo You need to reset this!!
   model_src_path: ''
   trainer: 'backprop'
   print_freq: 20

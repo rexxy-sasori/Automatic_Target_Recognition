@@ -1,9 +1,5 @@
 This repository contains src code developed in python3 for training neural networks of Automatic 
-Target Recognition. Preliminiary results have been pulished 
-in ICASSP 2020 and a copy of the manuscript can be found [here](http://shanbhag.ece.illinois.edu/publications/ICASSP_dbouk_2020.pdf)
-
-
-To run the code, run the command:
+Target Recognition. To run the code, run the command:
 
 python main_train.py [YAML File Path]
 
@@ -16,7 +12,7 @@ a validation set. If use_validation is set to False, then the script will save t
 either the best test error or test loss. 
 
 When the training is completed, a model with the extension .pt.tar can be found in directory 
-specified in result_dir. To run 5 independent training processes for averaged accuracy, one should run replace "main_train.py" with "main_train_multiple.py". To evalute the model, run:
+specified in result_dir. To evalute the model, run:
 
 python main_eval.py [Model File Path]
 
@@ -24,18 +20,10 @@ The script will print the classification accuracy and draw the confusion matrix.
 the API only supports training on GPU and evaluating on GPU. If the feature of training on GPU and 
 evaluating on CPU is desired, please submit the issue in wiki.
 
-By expanding models, trainer computation mechanism (backprop is provided as a sample in trainer.py), and loss functions, this framework can be used to develope various machine learning / deep learning projects
+The dependency is listed in requirements.txt.
 
-The dependency is listed in requirements.txt. # Automatic_Target_Recognition
 
 If you are using this code and there is a resulting publication, please cite our work in ICASSP2020 as follows:
 
-@INPROCEEDINGS{9054094,
-  author={Dbouk, Hassan and Geng, Hanfei and Vineyard, Craig M. and Shanbhag, Naresh R.},
-  booktitle={ICASSP 2020 - 2020 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)}, 
-  title={Low-Complexity Fixed-Point Convolutional Neural Networks For Automatic Target Recognition}, 
-  year={2020},
-  volume={},
-  number={},
-  pages={1598-1602},
-  doi={10.1109/ICASSP40776.2020.9054094}}
+@INPROCEEDINGS{9054094, author={Dbouk, Hassan and Geng, Hanfei and Vineyard, Craig M. and Shanbhag, Naresh R.}, booktitle={ICASSP 2020 - 2020 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)}, title={Low-Complexity Fixed-Point Convolutional Neural Networks For Automatic Target Recognition}, year={2020}, volume={}, number={}, pages={1598-1602}, doi={10.1109/ICASSP40776.2020.9054094}}
+ 

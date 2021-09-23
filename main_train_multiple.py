@@ -28,25 +28,29 @@ def run(usr_configs):
     trainer_configs.setup(usr_configs)
     trainer = nn_config.get_trainer(usr_configs.train)(trainer_configs)
     trainer.train()
-    return trainer.model_dst_path
+    return trainer.model_dst_path, trainer.nnresult.test_accuracy
 
 
 if __name__ == '__main__':
-    usr_configs = usr_config.get_usr_config()
-    parent_result_dir = usr_configs.train.result_dir
+    fmsize=[24, 32, 48, 56, 64]
 
-    for i in range(dconst.NUM_TIME_TRAIN):
-        usr_configs.seed = dconst.SEED_TRAIN[i]
-        usr_configs.train.result_dir = os.path.join(
-            parent_result_dir, str(i)
-        )
+    for f in fmsize:
+        usr_configs = usr_config.get_usr_config()
+        usr_configs.model.init_args.fmsize = f
+        usr_configs.train.result_dir = os.path.join('/data/shanbhag/hgeng4/MSTAR/atrlite_fl', str(f))
+        parent_result_dir = usr_configs.train.result_dir
 
-        if i > 0:
-            usr_config.profile_complexity = False
+        for i in range(dconst.NUM_TIME_TRAIN):
+            usr_configs.seed = dconst.SEED_TRAIN[i]
+            usr_configs.train.result_dir = os.path.join(parent_result_dir, str(i))
 
-        start = datetime.now()
-        print('starting trial {} at {}'.format(i, start))
-        model_dst_path = run(usr_configs)
-        end = datetime.now()
-        print('trial {} finished in {}h'.format(i, (end - start).seconds/3600))
-        print('model saved at {}'.format(model_dst_path))
+            if i > 0:
+                usr_config.profile_complexity = False
+
+            start = datetime.now()
+            print('starting trial {} at {}'.format(i, start))
+            model_dst_path, final_acc = run(usr_configs)
+            end = datetime.now()
+            print('trial {} finished in {}h'.format(i, (end - start).seconds/3600))
+            print('model saved at {}'.format(model_dst_path))
+            print('fional model acc: {}'.format(final_acc))

@@ -65,7 +65,7 @@ train:
   use_train_weighted_sampler: False
   use_test_weighted_sampler: False
   resume_from_best: False
-  result_dir: '/data/shanbhag/hgeng4/MSTAR/atrlite/f_40' # todo You need to reset this!!
+  result_dir: '/data/shanbhag/hgeng4/MSTAR/atrlite/extra_trial' # todo You need to reset this!!
   model_src_path: ''
   trainer: 'backprop'
   print_freq: 20
