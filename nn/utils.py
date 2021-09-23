@@ -188,7 +188,7 @@ class Profiler:
 
 
 class ProfilerResult:
-    def __init__(self, macs, num_params, num_act, num_dp, per_compute_layer_complexity):
+    def __init__(self, macs=0, num_params=0, num_act=0, num_dp=0, per_compute_layer_complexity=()):
         # per_compute_layer complexity data format:
         # module name, num_op, num_params
         self.macs = macs

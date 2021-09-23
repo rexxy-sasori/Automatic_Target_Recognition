@@ -108,7 +108,7 @@ class Trainer:
 
             profiler_result = profiler.profile(inputs=input_tensor)
         else:
-            profiler_result = ProfilerResult(0, 0)
+            profiler_result = ProfilerResult()
 
         self.nnresult = NNResult(profiler_result, trainer_configs.usr)
         if self.trainer_configs.resume_from_best or self.trainer_configs.eval_model:
