@@ -135,7 +135,7 @@ class CapsuleLayer(nn.Module):
         N, C, H, W = conv_out.shape
         conv_out = conv_out.squeeze(1)
         conv_out = conv_out.reshape(N, C // self.input_dim, self.input_dim, H, W)
-        conv_out = conv_out.permute(0, 3, 4, 1, 2)
+        conv_out = conv_out.permute(0, 1, 3, 4, 2)
         conv_out = conv_out.reshape(N, -1, self.input_dim)
         u_tilda = conv_out
         v_norm = self.classifier(u_tilda)
