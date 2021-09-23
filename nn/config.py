@@ -265,6 +265,7 @@ class TrainerConfigs:
                 self.model = torch.nn.DataParallel(self.model)
             cudnn.benchmark = True
 
+        self.model = self.model.to(self.device)
         print('done setting model, optimizer, lr scheduler, and device')
 
         trainset, valiationset, testset = get_dataset(usr.dataset)
