@@ -18,7 +18,7 @@ def main():
     trainer_configs.setup(usr_configs)
 
     trainer = nn_config.get_trainer(usr_configs.train)(trainer_configs)
-    trainer.eval(trainer.trainer_configs.test_loader, print_acc=True, cfm=True)
+    trainer.eval(trainer.trainer_configs.test_loader, print_acc=True, cfm=False)
 
 
 if __name__ == '__main__':
