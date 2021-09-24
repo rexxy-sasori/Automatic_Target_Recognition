@@ -11,6 +11,17 @@ import torch.nn.functional as F
 from nn import modules as modulesc
 
 
+class NNModel(nn.Module):
+    def __init__(self, *args, **kwargs):
+        super(NNModel, self).__init__(*args, **kwargs)
+
+    def forward(x):
+        return x
+
+    def count_parameters(self):
+        return sum(p.numel() for p in model.parameters())
+
+
 class ATRLite(nn.Module):
     def __init__(self, fmsize=32, m=5):
         super(ATRLite, self).__init__()
