@@ -34,12 +34,12 @@ dataset:
   trainset:
     distort: True
     crop_size: 18
-    dataset_dir: '/scratch/MSTAR_ROTATED' # todo You need to reset this!!
+    dataset_dir: 'input_data' # todo You need to reset this!!
     classes:  ['2S1', 'D7', 'BRDM_2', 'BTR60', 'T62', 'ZSU_23_4', 'ZIL131', 'BTR70', 'BMP2', 'T72']
   testset:
     distort: False
     crop_size: 18
-    dataset_dir: '/scratch/MSTAR_ROTATED' # todo You need to reset this!!
+    dataset_dir: 'input_data' # todo You need to reset this!!
     classes:  ['2S1', 'D7', 'BRDM_2', 'BTR60', 'T62', 'ZSU_23_4', 'ZIL131', 'BTR70', 'BMP2', 'T72']
   base_transforms:
     - name: 'img2tensor'
@@ -56,14 +56,14 @@ dataset:
         mean: [0.2726]
         std: [0.2653]
 train:
-  num_worker: 16
+  num_worker: 12
   batch_size: 140
   num_epoch: 200
   drop_last_batch: False
   use_train_weighted_sampler: False
   use_test_weighted_sampler: False
   resume_from_best: False
-  result_dir: '/data/shanbhag/hgeng4/MSTAR/atrlite/capsule' # todo You need to reset this!!
+  result_dir: './trained_models/capsule' # todo You need to reset this!!
   model_src_path: ''
   trainer: 'backprop'
   print_freq: 20
