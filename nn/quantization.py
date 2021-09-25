@@ -119,10 +119,10 @@ class QBatchNorm2d(nn.BatchNorm2d):
         self.clip_val = 0
         self.num_bits_act = quant_args['num_bits_act']
         self.num_bits_weight = quant_args['num_bits_weight']
-        #self.quantize_params()
+        # self.quantize_params()
 
     def forward(self, inputs):
-        #self.quantize_params()
+        # self.quantize_params()
         out = super(QBatchNorm2d, self).forward(inputs)
         relu_clip_val = torch.max(self.bias.data + 3 * self.weight.data.abs()).item()
         relu_clip_val = 2 ** (round(math.log(relu_clip_val, 2)))

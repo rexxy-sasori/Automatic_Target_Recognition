@@ -11,7 +11,6 @@ import copy
 import operator
 import os
 import time
-
 from datetime import datetime
 
 import torch
@@ -92,7 +91,7 @@ class Trainer:
         dt_str = now.strftime("_%Y_%m_%d_%H_%M_%S")
 
         model_dst_file_name = str(self.trainer_configs.model)
-        model_dst_file_name = model_dst_file_name.replace('.pt.tar', dt_str + '.pt.tar') 
+        model_dst_file_name = model_dst_file_name.replace('.pt.tar', dt_str + '.pt.tar')
         if self.trainer_configs.usr.dataset.aug:
             model_dst_file_name = model_dst_file_name.replace('.pt.tar', '_aug.pt.tar')
         self.model_dst_path = os.path.join(self.trainer_configs.result_dir, model_dst_file_name)
@@ -101,8 +100,8 @@ class Trainer:
         if self.trainer_configs.usr.profile_complexity:
             profiler = Profiler(copy.deepcopy(trainer_configs.model))
 
-            if hasattr(trainer_configs.model,'R'):
-                input_tensor = torch.randn(1,1,trainer_configs.model.R,trainer_configs.model.R)
+            if hasattr(trainer_configs.model, 'R'):
+                input_tensor = torch.randn(1, 1, trainer_configs.model.R, trainer_configs.model.R)
             else:
                 input_tensor = __MODELS_INPUTS__.get(type(trainer_configs.model))
 

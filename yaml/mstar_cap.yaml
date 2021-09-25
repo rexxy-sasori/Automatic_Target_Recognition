@@ -35,26 +35,26 @@ dataset:
     distort: True
     crop_size: 18
     dataset_dir: 'input_data' # todo You need to reset this!!
-    classes:  ['2S1', 'D7', 'BRDM_2', 'BTR60', 'T62', 'ZSU_23_4', 'ZIL131', 'BTR70', 'BMP2', 'T72']
+    classes: [ '2S1', 'D7', 'BRDM_2', 'BTR60', 'T62', 'ZSU_23_4', 'ZIL131', 'BTR70', 'BMP2', 'T72' ]
   testset:
     distort: False
     crop_size: 18
     dataset_dir: 'input_data' # todo You need to reset this!!
-    classes:  ['2S1', 'D7', 'BRDM_2', 'BTR60', 'T62', 'ZSU_23_4', 'ZIL131', 'BTR70', 'BMP2', 'T72']
+    classes: [ '2S1', 'D7', 'BRDM_2', 'BTR60', 'T62', 'ZSU_23_4', 'ZIL131', 'BTR70', 'BMP2', 'T72' ]
   base_transforms:
     - name: 'img2tensor'
       init_args: ~
     - name: 'normalize_mean_std'
       init_args:
-        mean: [0.2726]
-        std: [0.2653]
+        mean: [ 0.2726 ]
+        std: [ 0.2653 ]
   aug_transforms:
     - name: 'img2tensor'
       init_args: ~
     - name: 'normalize_mean_std'
       init_args:
-        mean: [0.2726]
-        std: [0.2653]
+        mean: [ 0.2726 ]
+        std: [ 0.2653 ]
 train:
   num_worker: 12
   batch_size: 140

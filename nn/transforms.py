@@ -5,7 +5,6 @@ class definitions for customized nn transforms
 """
 
 import torch
-import numpy as np
 from torchvision import transforms as tfd
 
 from nn import quantization
@@ -46,6 +45,7 @@ class QuantInput(object):
     def __call__(self, data):
         data = quantization.quantize_uniform(data, n_bits=self.num_bits, clip=self.clip_val, device='cpu')
         return data
+
 
 __TRANSFORMS__ = {
     'I': Identity,

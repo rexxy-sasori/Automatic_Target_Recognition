@@ -13,10 +13,12 @@ class definitions for utilitiy used in training, which includes:
 """
 
 import numpy as np
-from thop import profile
 import torch
 import torchvision
+
 from nn import dataset as datasetc
+from thop import profile
+
 
 class AverageMeter:
     """Computes and stores the average and current value"""

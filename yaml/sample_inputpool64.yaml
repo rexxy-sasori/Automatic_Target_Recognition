@@ -28,28 +28,28 @@ dataset:
   aug: True
   trainset:
     distort: True
-    crop_size:  32
+    crop_size: 32
     dataset_dir: '/scratch/MSTAR_NEW' # todo You need to reset this!!
-    classes:  ['2S1', 'BMP2', 'BTR70', 'M1', 'M2', 'M35', 'M548', 'M60', 'ZSU23', 'T72']
+    classes: [ '2S1', 'BMP2', 'BTR70', 'M1', 'M2', 'M35', 'M548', 'M60', 'ZSU23', 'T72' ]
   testset:
     distort: False
     crop_size: 32
     dataset_dir: '/scratch/MSTAR_NEW' # todo You need to reset this!!
-    classes:  ['2S1', 'BMP2', 'BTR70', 'M1', 'M2', 'M35', 'M548', 'M60', 'ZSU23', 'T72']
+    classes: [ '2S1', 'BMP2', 'BTR70', 'M1', 'M2', 'M35', 'M548', 'M60', 'ZSU23', 'T72' ]
   base_transforms:
     - name: 'img2tensor'
       init_args: ~
     - name: 'normalize_mean_std'
       init_args:
-        mean: [0.3331]
-        std: [0.2311]
+        mean: [ 0.3331 ]
+        std: [ 0.2311 ]
   aug_transforms:
     - name: 'img2tensor'
       init_args: ~
     - name: 'normalize_mean_std'
       init_args:
-        mean: [0.3331]
-        std: [0.2311]
+        mean: [ 0.3331 ]
+        std: [ 0.2311 ]
 train:
   num_worker: 32
   batch_size: 140

@@ -47,8 +47,6 @@ def count_convNd(m: _ConvNd, x: (torch.Tensor,), y: torch.Tensor):
     m.weight_reuse = torch.DoubleTensor([kernel_ops * y.size()[-3]])
 
 
-
-
 def count_bn(m, x, y):
     x = x[0]
 

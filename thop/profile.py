@@ -1,9 +1,10 @@
 from distutils.version import LooseVersion
 
 from torch import nn
-#from nn.models import Conv2dSamePadding
 
 from .vision.basic_hooks import *
+
+# from nn.models import Conv2dSamePadding
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -31,7 +32,7 @@ register_hooks = {
     nn.Conv1d: count_convNd,
     nn.Conv2d: count_convNd,
     nn.Conv3d: count_convNd,
-    #Conv2dSamePadding: count_convNd,
+    # Conv2dSamePadding: count_convNd,
     nn.ConvTranspose1d: count_convNd,
     nn.ConvTranspose2d: count_convNd,
     nn.ConvTranspose3d: count_convNd,
@@ -164,7 +165,6 @@ def profile(model: nn.Module, inputs, custom_ops=None, verbose=True):
         m.register_buffer('weight_reuse', torch.zeros(1, dtype=torch.float64))
         m.register_buffer('dim_dp', torch.zeros(1, dtype=torch.float64))
 
-
         m_type = type(m)
 
         fn = None
@@ -206,8 +206,8 @@ def profile(model: nn.Module, inputs, custom_ops=None, verbose=True):
             # else:
             #     m_ops, m_params = m.total_ops, m.total_params
             if m in handler_collection and not isinstance(m, (nn.Sequential, nn.ModuleList)):
-                m_ops, m_params, m_num_act, m_num_dp, m_weight_reuse, m_input_reuse, m_dim_dp\
-                    = m.total_ops.item(), m.total_params.item(), m.num_act.item(), m.num_dp.item(),\
+                m_ops, m_params, m_num_act, m_num_dp, m_weight_reuse, m_input_reuse, m_dim_dp \
+                    = m.total_ops.item(), m.total_params.item(), m.num_act.item(), m.num_dp.item(), \
                       m.weight_reuse.item(), m.input_reuse.item(), m.dim_dp.item()
             else:
                 m_ops, m_params, m_num_act, m_num_dp = dfs_count(m, prefix=prefix + "\t")
@@ -219,7 +219,7 @@ def profile(model: nn.Module, inputs, custom_ops=None, verbose=True):
             total_num_act += m_num_act
             total_num_dp += m_num_dp
             module_name = m._get_name()
-            #print(prefix, module_name, '(ops:', m_ops, 'params:', m_params, 'act:', m_num_act, 'dp:', m_num_dp,')')
+            # print(prefix, module_name, '(ops:', m_ops, 'params:', m_params, 'act:', m_num_act, 'dp:', m_num_dp,')')
 
             if module_name in ['Conv2d', 'Linear', 'Conv2dSamePadding']:
                 per_compute_layer_complexity.append([module_name, m_ops, m_params, m_num_act, m_num_dp, m_dim_dp])

@@ -15,13 +15,12 @@ This file inits all nessceary configurations given usr specificed yaml file. The
 
 import torch
 import torch.backends.cudnn as cudnn
-import torch.nn as nnd  # existing torch nn package
 from torchvision import transforms as tfd  # existing transforms
 
 from nn import dataset as datasetc
+from nn import loss
 from nn import models as modelsc
 from nn import quantization
-from nn import loss
 from nn import transforms as tfc  # customized transforms
 from nn.trainer import __TRAINER__
 from nn.utils import ImbalancedDatasetSampler

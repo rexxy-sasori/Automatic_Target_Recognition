@@ -877,7 +877,7 @@ class CapSAREncoder(nn.Module):
 
     def __str__(self):
         return 'capsule_primary.pt.tar'
-    
+
     def __repr__(self):
         return 'capsule_primary.pt.tar'
 
