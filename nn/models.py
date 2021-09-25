@@ -22,7 +22,7 @@ class NNModel(nn.Module):
         return sum(p.numel() for p in self.parameters())
 
 
-class ATRLite(NNModel):
+class ATRLite(nn.Module):
     def __init__(self, fmsize=32, m=5):
         super(ATRLite, self).__init__()
         self.fmsize = fmsize
@@ -86,7 +86,7 @@ class ATRLite(NNModel):
         return 'dbknetlite_fm{}_m{}.pt.tar'.format(self.fmsize, self.m)
 
 
-class ATRLiteC0F0(NNModel):
+class ATRLiteC0F0(nn.Module):
     def __init__(self, fmsize=1, m=5):
         super(ATRLiteC0F0, self).__init__()
         self.fmsize = fmsize
@@ -110,7 +110,7 @@ class ATRLiteC0F0(NNModel):
         return 'dbknetlite_only_c0_f0_fm{}_m{}.pt.tar'.format(self.fmsize, self.m)
 
 
-class BASE(NNModel):
+class BASE(nn.Module):
     def __init__(self, fmsize=32, K=5, R=128):
         super(BASE, self).__init__()
 
@@ -174,7 +174,7 @@ class BASE(NNModel):
         return 'basenet_fm{}_k{}_r{}.pt.tar'.format(self.fmsize, self.K, self.R)
 
 
-class BASEDWS(NNModel):
+class BASEDWS(nn.Module):
     def __init__(self, fmsize=32, K=9, R=128):
         super(BASEDWS, self).__init__()
 
@@ -246,7 +246,7 @@ class BASEDWS(NNModel):
         return 'basedwsnet_fm{}_k{}_r{}.pt.tar'.format(self.fmsize, self.K, self.R)
 
 
-class DingNet(NNModel):
+class DingNet(nn.Module):
     def __init__(self):
         super(DingNet, self).__init__()
         self.conv1 = nn.Conv2d(1, 96, 3)  # 96 126 126
@@ -285,7 +285,7 @@ class DingNet(NNModel):
         return 'dingnet.pt.tar'
 
 
-class ChenNet(NNModel):
+class ChenNet(nn.Module):
     def __init__(self):
         super(ChenNet, self).__init__()
         self.conv1 = nn.Conv2d(1, 16, 5)
@@ -329,7 +329,7 @@ class ChenNet(NNModel):
         return 'chennet.pt.tar'
 
 
-class GaoNet(NNModel):
+class GaoNet(nn.Module):
     def __init__(self):
         super(GaoNet, self).__init__()
 
@@ -376,7 +376,7 @@ class GaoNet(NNModel):
         return 'gaonet.pt.tar'
 
 
-class WagnerNet(NNModel):
+class WagnerNet(nn.Module):
     def __init__(self):
         super(WagnerNet, self).__init__()
         self.conv1 = nn.Conv2d(1, 20, 13)
@@ -396,7 +396,7 @@ class WagnerNet(NNModel):
         return 'wagnernet.pt.tar'
 
 
-class WagnerNet_rev(NNModel):
+class WagnerNet_rev(nn.Module):
     def __init__(self, m=3, f=30, dropout_rate=0):
         self.m = m
         self.f = f
@@ -424,7 +424,7 @@ class WagnerNet_rev(NNModel):
         return 'wagnernet_rev_f%d_m%d.pt.tar' % (self.f, self.m)
 
 
-class MorganNet(NNModel):
+class MorganNet(nn.Module):
     def __init__(self):
         super(MorganNet, self).__init__()
         self.conv1 = nn.Conv2d(1, 18, 9)  # 18 120 12
@@ -489,7 +489,7 @@ class ATRLite96(ATRLite):
         return 'dbknetlite96_fm{}_m{}.pt.tar'.format(self.fmsize, self.m)
 
 
-class ATRLite48_efc(NNModel):
+class ATRLite48_efc(nn.Module):
     def __init__(self, fmsize=32, m=5, dropout_rate=0):
         super(ATRLite48_efc, self).__init__()
         self.fmsize = fmsize
@@ -561,7 +561,7 @@ class ATRLite48_efc(NNModel):
         return 'dbknetlite48_efc_fm{}_m{}_d{}.pt.tar'.format(self.fmsize, self.m, self.dropout_rate)
 
 
-class ATRLite64_efc(NNModel):
+class ATRLite64_efc(nn.Module):
     def __init__(self, fmsize=32, m=5, dropout_rate=0):
         super(ATRLite64_efc, self).__init__()
         self.fmsize = fmsize
@@ -633,7 +633,7 @@ class ATRLite64_efc(NNModel):
         return 'dbknetlite64_efc_fm{}_m{}_d{}.pt.tar'.format(self.fmsize, self.m, self.dropout_rate)
 
 
-class ATRLite80_efc(NNModel):
+class ATRLite80_efc(nn.Module):
     def __init__(self, fmsize=32, m=5, dropout_rate=0):
         super(ATRLite80_efc, self).__init__()
         self.fmsize = fmsize
@@ -705,7 +705,7 @@ class ATRLite80_efc(NNModel):
         return 'dbknetlite80_efc_fm{}_m{}_d{}.pt.tar'.format(self.fmsize, self.m, self.dropout_rate)
 
 
-class ATRLite64_isk(NNModel):
+class ATRLite64_isk(nn.Module):
     def __init__(self, fmsize=32, m=5, dropout_rate=0):
         super(ATRLite64_isk, self).__init__()
         self.fmsize = fmsize
@@ -777,7 +777,7 @@ class ATRLite64_isk(NNModel):
         return 'dbknetlite64_isk_fm{}_m{}_d{}.pt.tar'.format(self.fmsize, self.m, self.dropout_rate)
 
 
-class ATRLite80_isk(NNModel):
+class ATRLite80_isk(nn.Module):
     def __init__(self, fmsize=32, m=5, dropout_rate=0):
         super(ATRLite80_isk, self).__init__()
         self.fmsize = fmsize
@@ -849,7 +849,7 @@ class ATRLite80_isk(NNModel):
         return 'dbknetlite80_isk_fm{}_m{}_d{}.pt.tar'.format(self.fmsize, self.m, self.dropout_rate)
 
 
-class GuoCapSAREncoder(NNModel):
+class GuoCapSAREncoder(nn.Module):
     def __init__(self):
         super(GuoCapSAREncoder, self).__init__()
         self.feautures = nn.Sequential(
@@ -882,7 +882,7 @@ class GuoCapSAREncoder(NNModel):
         return 'capsule_primary.pt.tar'
 
 
-class YangCapSAREncoder(NNModel):
+class YangCapSAREncoder(nn.Module):
     def __init__(self):
         super(YangCapSAREncoder, self).__init__()
         self.feautures = nn.Sequential(
@@ -891,11 +891,13 @@ class YangCapSAREncoder(NNModel):
             nn.Conv2d(16, 32, 5, dilation=2, stride=1, padding=4),
             nn.ReLU(inplace=True),
             nn.MaxPool2d(2, 2),
+
             nn.Conv2d(32, 64, 5, dilation=2, stride=1, padding=4),
             nn.ReLU(inplace=True),
             nn.Conv2d(64, 128, 5, dilation=2, stride=1, padding=4),
             nn.ReLU(inplace=True),
             nn.MaxPool2d(2, 2),
+
             nn.Conv2d(128, 256, 5, dilation=2, stride=1, padding=4),
             nn.ReLU(inplace=True),
             nn.MaxPool2d(2, 2),
@@ -915,6 +917,9 @@ class YangCapSAREncoder(NNModel):
         before_cap = self.feautures(x)
         likelihood = self.cap(before_cap)
         return likelihood
+
+    def __str__(self):
+        return 'yang_capsule_primary.pt.tar'
 
 
 __MODELS__ = {
