@@ -17,7 +17,7 @@ optimizer:
   momentum: 0.9
   weight_decay: 0.0009
 model:
-  name: 'capsule'
+  name: 'yang_cap'
   quant_model: False
   quant_act: False
   quant_bias: False
@@ -33,12 +33,12 @@ dataset:
   aug: True
   trainset:
     distort: True
-    crop_size: 18
+    crop_size: 32
     dataset_dir: 'input_data' # todo You need to reset this!!
     classes: [ '2S1', 'D7', 'BRDM_2', 'BTR60', 'T62', 'ZSU_23_4', 'ZIL131', 'BTR70', 'BMP2', 'T72' ]
   testset:
     distort: False
-    crop_size: 18
+    crop_size: 32
     dataset_dir: 'input_data' # todo You need to reset this!!
     classes: [ '2S1', 'D7', 'BRDM_2', 'BTR60', 'T62', 'ZSU_23_4', 'ZIL131', 'BTR70', 'BMP2', 'T72' ]
   base_transforms:
@@ -63,7 +63,7 @@ train:
   use_train_weighted_sampler: False
   use_test_weighted_sampler: False
   resume_from_best: False
-  result_dir: './trained_models/capsule' # todo You need to reset this!!
+  result_dir: './trained_models/yang_capsule' # todo You need to reset this!!
   model_src_path: ''
   trainer: 'backprop'
   print_freq: 20
