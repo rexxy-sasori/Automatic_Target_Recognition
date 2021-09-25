@@ -20,8 +20,11 @@ The script will print the classification accuracy and draw the confusion matrix.
 the API only supports training on GPU and evaluating on GPU. If the feature of training on GPU and 
 evaluating on CPU is desired, please submit the issue in wiki.
 
-The dependency is listed in requirements.txt.
+The training and testing data is located in the input_data folder and the compressed version is in MSTAR_ROTATED.tar.gz. 
 
+There are some pretrained models in the trained_models folder
+
+The dependency is listed in requirements.txt.
 
 If you are using this code and there is a resulting publication, please cite our work in ICASSP2020 as follows:
 
