@@ -876,10 +876,10 @@ class GuoCapSAREncoder(nn.Module):
         return likelihood
 
     def __str__(self):
-        return 'capsule_primary.pt.tar'
+        return 'guo_capsule_primary.pt.tar'
 
     def __repr__(self):
-        return 'capsule_primary.pt.tar'
+        return 'guo_capsule_primary.pt.tar'
 
 
 class YangCapSAREncoder(nn.Module):
