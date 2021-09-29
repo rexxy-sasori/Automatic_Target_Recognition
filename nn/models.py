@@ -935,9 +935,9 @@ class ShahCapSAREncoder(nn.Module):
             num_out_channel=256,
             kernel_size=9,
             stride=2,
-            num_primary_cap=32 * 56 * 56 / 64,
+            num_primary_cap=int(32 * 56 * 56 / 64),
             num_sar_cap=10,
-            input_dim=8 * 64
+            input_dim=int(8 * 64)
         )
 
     def forward(self, x):
