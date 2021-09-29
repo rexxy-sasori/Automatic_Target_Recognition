@@ -922,6 +922,33 @@ class YangCapSAREncoder(nn.Module):
         return 'yang_capsule_primary.pt.tar'
 
 
+class ShahCapSAREncoder(nn.Module):
+    def __init__(self):
+        super(ShahCapSAREncoder, self).__init__()
+        self.feautures = nn.Sequential(
+            nn.Conv2d(1, 256, 9),
+            nn.ReLU(inplace=True),
+        )
+
+        self.cap = modulesc.CapsuleLayer(
+            num_in_channel=256,
+            num_out_channel=256,
+            kernel_size=9,
+            stride=2,
+            num_primary_cap=32 * 56 * 56 / 64,
+            num_sar_cap=10,
+            input_dim=8 * 64
+        )
+
+    def forward(self, x):
+        before_cap = self.feautures(x)
+        likelihood = self.cap(before_cap)
+        return likelihood
+
+    def __str__(self):
+        return 'shah_capsule_primary.pt.tar'
+
+
 __MODELS__ = {
     'atrlite': ATRLite,
     'atrlite_c0_f0': ATRLiteC0F0,
@@ -941,6 +968,7 @@ __MODELS__ = {
     'atrlite80_isk': ATRLite80_isk,
     'guo_capsule': GuoCapSAREncoder,
     'yang_cap': YangCapSAREncoder,
+    'shah_cap': ShahCapSAREncoder,
 }
 
 __MODELS_INPUTS__ = {
@@ -961,5 +989,6 @@ __MODELS_INPUTS__ = {
     ATRLite64_isk: (torch.randn(1, 1, 64, 64)),
     ATRLite80_isk: (torch.randn(1, 1, 80, 80)),
     GuoCapSAREncoder: (torch.randn(1, 1, 92, 92)),
-    YangCapSAREncoder: (torch.randn(1, 1, 64, 64))
+    YangCapSAREncoder: (torch.randn(1, 1, 64, 64)),
+    ShahCapSAREncoder: (torch.randn(1, 1, 128, 128))
 }
