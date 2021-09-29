@@ -1001,7 +1001,7 @@ __MODELS__ = {
     'guo_capsule': GuoCapSAREncoder,
     'yang_cap': YangCapSAREncoder,
     'shah_cap': ShahCapSAREncoder,
-    'zhang_cap': ShahCapSAREncoder,
+    'zhang_cap': ZhangCapSAREncoder,
 }
 
 __MODELS_INPUTS__ = {
