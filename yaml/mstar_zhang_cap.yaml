@@ -1,0 +1,72 @@
+seed: 233574
+device:
+  use_gpu: True
+  gpu_id: 0
+  parallel: False
+lr_scheduler:
+  name: 'step'
+  init_args:
+    lr_step_size: 50
+    lr_step_gamma: 0.1
+loss_func:
+  name: 'cap_margin'
+  init_args: ~
+optimizer:
+  name: 'qsgd'
+  lr: 0.01
+  momentum: 0.9
+  weight_decay: 0.0009
+model:
+  name: 'zhang_cap'
+  quant_model: False
+  quant_act: False
+  quant_bias: False
+  num_bits_weight: 4
+  num_bits_act: 4
+  quant_scheme_conv: 'uniform'
+  quant_scheme_fc: 'uniform'
+  init_args: ~
+dataset:
+  name: 'atr'
+  train_valid_split: 0.7
+  use_validation: False
+  aug: True
+  trainset:
+    distort: True
+    crop_size: 32
+    dataset_dir: 'input_data' # todo You need to reset this!!
+    classes: [ '2S1', 'D7', 'BRDM_2', 'BTR60', 'T62', 'ZSU_23_4', 'ZIL131', 'BTR70', 'BMP2', 'T72' ]
+  testset:
+    distort: False
+    crop_size: 32
+    dataset_dir: 'input_data' # todo You need to reset this!!
+    classes: [ '2S1', 'D7', 'BRDM_2', 'BTR60', 'T62', 'ZSU_23_4', 'ZIL131', 'BTR70', 'BMP2', 'T72' ]
+  base_transforms:
+    - name: 'img2tensor'
+      init_args: ~
+    - name: 'normalize_mean_std'
+      init_args:
+        mean: [ 0.2726 ]
+        std: [ 0.2653 ]
+  aug_transforms:
+    - name: 'img2tensor'
+      init_args: ~
+    - name: 'normalize_mean_std'
+      init_args:
+        mean: [ 0.2726 ]
+        std: [ 0.2653 ]
+train:
+  num_worker: 12
+  batch_size: 140
+  num_epoch: 200
+  drop_last_batch: False
+  use_train_weighted_sampler: False
+  use_test_weighted_sampler: False
+  resume_from_best: False
+  result_dir: './trained_models/zhang_capsule' # todo You need to reset this!!
+  model_src_path: ''
+  trainer: 'backprop'
+  print_freq: 20
+  train_model: True
+  save_model_by: 'acc'
+profile_complexity: False # if True, it will use thop package to calculate the number of parameters & the number of macs
