@@ -928,6 +928,9 @@ class ShahCapSAREncoder(nn.Module):
         self.feautures = nn.Sequential(
             nn.Conv2d(1, 256, 9),
             nn.ReLU(inplace=True),
+            nn.Conv2d(256, 256, 5),
+            nn.ReLU(inplace=True),
+            nn.Dropout(0.5),
         )
 
         self.cap = modulesc.CapsuleLayer(
@@ -947,6 +950,35 @@ class ShahCapSAREncoder(nn.Module):
 
     def __str__(self):
         return 'shah_capsule_primary.pt.tar'
+
+
+class ZhangCapSAREncoder(nn.Module):
+    def __init__(self):
+        super(ZhangCapSAREncoder, self).__init__()
+        self.feautures = nn.Sequential(
+            nn.Conv2d(1, 16, 9),
+            nn.ReLU(inplace=True),
+            nn.Conv2d(16, 32, 9),
+            nn.ReLU(inplace=True),
+        )
+
+        self.cap = modulesc.CapsuleLayer(
+            num_in_channel=32,
+            num_out_channel=64,
+            kernel_size=9,
+            stride=2,
+            num_primary_cap=400,
+            num_sar_cap=10,
+            input_dim=64
+        )
+
+    def forward(self, x):
+        before_cap = self.feautures(x)
+        likelihood = self.cap(before_cap)
+        return likelihood
+
+    def __str__(self):
+        return 'zhang_capsule_primary.pt.tar'
 
 
 __MODELS__ = {
@@ -969,6 +1001,7 @@ __MODELS__ = {
     'guo_capsule': GuoCapSAREncoder,
     'yang_cap': YangCapSAREncoder,
     'shah_cap': ShahCapSAREncoder,
+    'zhang_cap': ShahCapSAREncoder,
 }
 
 __MODELS_INPUTS__ = {
@@ -990,5 +1023,6 @@ __MODELS_INPUTS__ = {
     ATRLite80_isk: (torch.randn(1, 1, 80, 80)),
     GuoCapSAREncoder: (torch.randn(1, 1, 92, 92)),
     YangCapSAREncoder: (torch.randn(1, 1, 64, 64)),
-    ShahCapSAREncoder: (torch.randn(1, 1, 128, 128))
+    ShahCapSAREncoder: (torch.randn(1, 1, 128, 128)),
+    ZhangCapSAREncoder: (torch.randn(1, 1, 64, 64))
 }
