@@ -886,18 +886,18 @@ class YangCapSAREncoder(nn.Module):
     def __init__(self):
         super(YangCapSAREncoder, self).__init__()
         self.feautures = nn.Sequential(
-            nn.Conv2d(1, 8, 13, stride=1),
+            nn.Conv2d(1, 16, 13, stride=1),
             nn.ReLU(inplace=True),
-            nn.Conv2d(8, 16, 13, stride=1),
+            nn.Conv2d(16, 32, 13, stride=1),
             nn.ReLU(inplace=True),
         )  # output size BatchSizex16x40x40
 
         self.cap = modulesc.CapsuleLayer(
-            num_in_channel=16,
-            num_out_channel=16,
+            num_in_channel=32,
+            num_out_channel=32,
             kernel_size=9,
             stride=2,
-            num_primary_cap=256,
+            num_primary_cap=512,
             num_sar_cap=10,
             input_dim=16,
         )
