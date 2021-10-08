@@ -249,7 +249,7 @@ class Trainer:
         return NotImplementedError
 
     def load_ckpt(self):
-        ckpt = torch.load(self.trainer_configs.model_src_path)
+        ckpt = torch.load(self.trainer_configs.model_src_path, map_location=self.trainer_configs.device)
         self.nnresult = ckpt.get('analysis')
         self.trainer_configs.model.load_state_dict(ckpt.get('model_state'))
         self.trainer_configs.optimizer.load_state_dict(ckpt.get('optimizer_state'))
