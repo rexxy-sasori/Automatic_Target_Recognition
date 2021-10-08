@@ -9,10 +9,12 @@ def main():
     parser = argparse.ArgumentParser(description='model evaluation script')
     parser.add_argument('model_src_path', type=str, help='model src path')
     args = parser.parse_args()
-    ckpt = torch.load(args.model_src_path)
+    device = 'cuda' if torch.cuda.is_available() else 'cpu'
+    ckpt = torch.load(args.model_src_path, map_location=device)
 
     usr_configs = ckpt.get('analysis').trainer_usr_configs
     usr_configs.train.train_model = False
+    usr_configs.device.use_gpu = False if device=='cpu' else True
     usr_configs.train.model_src_path = args.model_src_path
     trainer_configs = nn_config.TrainerConfigs()
     trainer_configs.setup(usr_configs)
