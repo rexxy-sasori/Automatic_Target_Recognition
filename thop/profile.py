@@ -2,6 +2,7 @@ from distutils.version import LooseVersion
 
 from torch import nn
 
+from nn import modules
 from .vision.basic_hooks import *
 
 # from nn.models import Conv2dSamePadding
@@ -45,6 +46,8 @@ register_hooks = {
     nn.ReLU6: zero_ops,
     nn.LeakyReLU: count_relu,
 
+    modules.VotingCapLayer: nn.Conv2d,
+
     nn.MaxPool1d: zero_ops,
     nn.MaxPool2d: zero_ops,
     nn.MaxPool3d: zero_ops,
@@ -61,6 +64,8 @@ register_hooks = {
 
     nn.Linear: count_linear,
     nn.Dropout: zero_ops,
+    modules.PrimaryCapsule: count_linear,
+    modules.Squash: zero_ops,
 
     nn.Upsample: count_upsample,
     nn.UpsamplingBilinear2d: count_upsample,

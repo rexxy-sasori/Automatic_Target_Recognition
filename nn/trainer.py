@@ -109,7 +109,6 @@ class Trainer:
         else:
             profiler_result = ProfilerResult()
 
-        self.nnresult = NNResult(profiler_result, trainer_configs.usr)
         if self.trainer_configs.resume_from_best or self.trainer_configs.eval_model:
             self.load_ckpt()
 
@@ -126,6 +125,7 @@ class Trainer:
         }
 
         self.trainer_configs.model = self.trainer_configs.model.to(self.trainer_configs.device)
+        self.nnresult = NNResult(profiler_result, trainer_configs.usr)
 
     def train(self):
         num_epoch = self.trainer_configs.num_epoch

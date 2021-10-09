@@ -97,7 +97,7 @@ class VotingCapLayer(nn.Conv2d):
 
         return voted tensor with shape (batch_size, num_sar_cap, input_dim)
         """
-        out = F.conv2d(x, self.weight, groups=self.groups)
+        out = F.conv2d(x, self.weight, self.bias, self.stride, self.padding, self.dilation, self.groups)
         out = out.squeeze(2)
         return out
 
