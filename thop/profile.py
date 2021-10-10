@@ -4,7 +4,7 @@ from torch import nn
 
 from nn import modules
 from .vision.basic_hooks import *
-
+from thop import utils
 # from nn.models import Conv2dSamePadding
 
 logger = logging.getLogger(__name__)
@@ -46,7 +46,7 @@ register_hooks = {
     nn.ReLU6: zero_ops,
     nn.LeakyReLU: count_relu,
 
-    modules.VotingCapLayer: nn.Conv2d,
+    modules.VotingCapLayer: count_convNd,
 
     nn.MaxPool1d: zero_ops,
     nn.MaxPool2d: zero_ops,
@@ -226,7 +226,7 @@ def profile(model: nn.Module, inputs, custom_ops=None, verbose=True):
             module_name = m._get_name()
             # print(prefix, module_name, '(ops:', m_ops, 'params:', m_params, 'act:', m_num_act, 'dp:', m_num_dp,')')
 
-            if module_name in ['Conv2d', 'Linear', 'Conv2dSamePadding']:
+            if utils.is_compute_layer(m):
                 per_compute_layer_complexity.append([module_name, m_ops, m_params, m_num_act, m_num_dp, m_dim_dp])
 
         return total_ops, total_params, total_num_act, total_num_dp

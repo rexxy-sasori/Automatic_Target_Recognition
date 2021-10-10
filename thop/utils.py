@@ -1,5 +1,11 @@
 from collections import Iterable
 
+from torch import nn
+
+
+def is_compute_layer(m):
+    return isinstance(m, nn.Conv2d) or isinstance(m, nn.Linear)
+
 
 def clever_format(nums, format="%.2f"):
     if not isinstance(nums, Iterable):

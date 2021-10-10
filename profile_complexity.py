@@ -25,3 +25,4 @@ if __name__ == "__main__":
     trainer = nn_config.get_trainer(usr_configs.train)(trainer_configs)
     ckpt['analysis'] = trainer.nnresult
     torch.save(ckpt, args.model_src_path)
+    print('Done writing profiling result to tar file')
