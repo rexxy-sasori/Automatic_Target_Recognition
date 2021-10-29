@@ -26,8 +26,11 @@ The dependency is listed in requirements.txt.
 
 If you are using this code and there is a resulting publication, please cite our work in ICASSP2020 as follows:
 
+```
 @INPROCEEDINGS{9054094, author={Dbouk, Hassan and Geng, Hanfei and Vineyard, Craig M. and Shanbhag, Naresh R.},
 booktitle={ICASSP 2020 - 2020 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)},
 title={Low-Complexity Fixed-Point Convolutional Neural Networks For Automatic Target Recognition}, year={2020},
 volume={}, number={}, pages={1598-1602}, doi={10.1109/ICASSP40776.2020.9054094}}
+```
+
  
